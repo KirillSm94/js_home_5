@@ -72,8 +72,8 @@ let range = function (a, b, c) {
         n++;
     }
     let qq = b - array[array.length - 1];
-    console.log(qq);
-    console.log(array);
+    //console.log(qq);
+    //console.log(array);
     if (qq >= c) {
         console.log(c);
         if (qq > c) {
@@ -85,7 +85,7 @@ let range = function (a, b, c) {
         array.pop();
     }
     console.log(array);
-    //что то пошло не так при 1,10,4
+    //что то пошло не так при 1,10,4 пришлось извернуться костылями
 
 };
 
@@ -114,3 +114,60 @@ let who = function (student) {
 
 who(student);
 
+//----------------------------------------------------------------------------------------------------------------------
+console.log('Четвертая задача');
+
+// Написать генератор случайных “слов”.
+// Сформировать слово используя правила:
+//      - определить длину слова случайно, но в диапазоне от 3 до 5 букв;
+//      - начинать слово с гласной или согласной (определить случайно);
+//      - чередовать гласные и согласные буквы в слове;
+//      - буквы выбираются случайно.
+
+let lengthWord,
+    firstSymbolGlassArr,
+    firstSymbolSogArr,
+    firstSymbolSog,
+    firstSymbolGlass,
+    random;
+
+random = function (min, max) {
+    let rand = min - 0.5 + Math.random() * (max - min + 1);
+    rand = Math.round(rand);
+    return rand;
+};
+
+lengthWord = random(3,5);
+
+firstSymbolGlassArr = ['а', 'е', 'ё', 'и', 'о', 'у', 'ы', 'э', 'ю', 'я'];
+firstSymbolSogArr = ['б', 'в', 'г', 'д', 'ж', 'з', 'й', 'к', 'л', 'м', 'п', 'р', 'с', 'т', 'ф', 'х', 'ц', 'ч', 'щ'];
+
+
+firstSymbolSog = firstSymbolSogArr[random(0,firstSymbolSogArr.length - 1)];
+firstSymbolGlass = firstSymbolGlassArr[random(0, firstSymbolGlassArr.length -1)];
+let word = [];
+
+if (random(0,1) === 1) {
+    for (let i = 1; i < lengthWord; i++) {
+        word[0] = firstSymbolGlass;
+        word[i] = firstSymbolSogArr[random(0, firstSymbolSogArr.length -1)];
+        for (let j = 2; j < lengthWord; j = j + 2) {
+            word[j] = firstSymbolGlassArr[random(0, firstSymbolGlassArr.length -1)];
+        }
+    }
+} else {
+    for (let i = 1; i < lengthWord; i++) {
+        word[0] = firstSymbolSog;
+        word[i] = firstSymbolGlassArr[random(0, firstSymbolGlassArr.length -1)];
+        for (let j = 2; j < lengthWord; j = j + 2) {
+            word[j] = firstSymbolSogArr[random(0, firstSymbolSogArr.length -1)];
+        }
+    }
+}
+
+let wordStr = word.join('');
+//console.log(word);
+console.log(wordStr);
+//console.log(firstSymbolGlass);
+//console.log(firstSymbolSog);
+//console.log(lengthWord);
