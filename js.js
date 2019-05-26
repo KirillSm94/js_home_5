@@ -73,11 +73,20 @@ let range = function (a, b, c) {
     }
     let qq = b - array[array.length - 1];
     console.log(qq);
+    console.log(array);
     if (qq >= c) {
         console.log(c);
+        if (qq > c) {
+            array.push(array[array.length -1] + c);
+        }
         array.push(b);
     }
+    if (array[array.length -1] - array[array.length -2] < c) {
+        array.pop();
+    }
     console.log(array);
+    //что то пошло не так при 1,10,4
+
 };
 
 
